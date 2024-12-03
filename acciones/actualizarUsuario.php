@@ -38,7 +38,7 @@ if (isset($_POST['Actualizar'])) {
         <label for="autor">Login</label>
         <input type="text" name="login" id="login" value='<?php echo $user['login']; ?>'>
         <label for="nPaginas">Password</label>
-        <input type="text" name="password" id="password">
+        <input type="password" name="password" id="password">
         <label for="rol">Rol</label>
         <select name="rol" id="rol">
             <option value="user">Usuario</option>
