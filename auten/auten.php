@@ -1,20 +1,23 @@
 <?php
+session_start();
     if(isset($_POST["enviar"])){
+        //incluimos las clases y guardamos los campos para el login
         include_once("../conexion/conexion.php");
         include_once("../clases/user.php");
+        include_once("funcionesAut.php");
         $userLogin = $_POST["login"];
         $userPass = $_POST["pass"];
 
-        $conexion = new conexion();
-        $user = new user($conexion, "usuarios");
-        if($user->login($userLogin, $userPass)){
-            session_start();
-            $nowUser = $user->getUserByUserName($userLogin);
-            $_SESSION['login'] = $nowUser["Login"];
-            $_SESSION['nombre'] = $nowUser["Name"];
+        //Comprobamos que el usuario existe en la base de datos.
+        if(login($userLogin, $userPass)){
+            //Obtenemos el rol del usuario
+            $classuser = new user(conexion::getConn(), "usuarios");
+            $user = $classuser->getUserByUserName($userLogin);
+            //guardamos en la sesion
+            $_SESSION["rol"]= $user["rol"];
             header("Location: ../index.php");
         }else{
-            header("Location: ./auten.php");
+            header("../errorAut.php");
         }
     }
 ?>

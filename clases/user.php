@@ -1,16 +1,11 @@
 <?php
 class user
 {
-    protected $id;
-    protected $nombre;
-    protected $login;
-    protected $password;
-    protected $salt;
     protected $conexion;
     protected $tabla;
-    public function __construct($conexion, $tabla)
+    public function __construct(PDO $conex, $tabla)
     {
-        $this->conexion = $conexion;
+        $this->conexion = $conex;
         $this->tabla = $tabla;
 
     }
@@ -77,29 +72,12 @@ class user
     public function getUserByUserName($UserName)
     {
         $sql = "SELECT * FROM $this->tabla WHERE login = :login";
-        try {
-            $stmt = $this->conexion->prepare($sql);
-            $stmt->bindParam(':login', $UserName);
-            $stmt->execute();
-        } catch (PDOException $e) {
-            echo 'a'. $e->getMessage();
-        }
+        $stmt = $this->conexion->prepare($sql);
 
-        /* $user = $stmt->fetch();
-        if ($user) {
-            return $user['id'];
-        } */
+        $stmt->bindParam(':login', $UserName);
+        $stmt->execute();
+
         return $stmt->fetch();
-    }
-    public function login($login, $password)
-    {
-        $user = self::getUserByUserName($login);
-        if ($user) {
-            $saltuser = $user["salt"];
-            $passwordlogin = hash("sha256", $password . $saltuser);
-            return $user["password"] == $passwordlogin;
-        }
-        return false;
     }
 }
 ?>
