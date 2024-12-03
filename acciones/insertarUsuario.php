@@ -37,6 +37,7 @@ if (isset($_POST['Insertar'])) {
         <a href="listadoLibros.php">Listado de libros</a>
         <a href="listadoAutores.php">Listado de autores</a>
         <a href="insertarLibro.php">Insertar libro</a>
+        <a href="insertarAutores.php">Insertar Autores</a>
     </nav>
     <form action="insertarUsuario.php" method="post">
         <label for="login">Login</label>

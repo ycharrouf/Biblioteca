@@ -1,5 +1,7 @@
 <?php
 require_once '../auten/seguridad.php';
+require_once '../templates/templateAdmin.php';
+require_once '../templates/templateBibliotecario.php';
 session_start();
 //comprobamos los roles
 if (comprobarUsuario()) {
@@ -39,12 +41,13 @@ if (isset($_POST['Insertar'])) {
 
 <body>
     <h1>Insertar libro</h1>
-    <nav id='menu'>
-        <a href="./listadoLibros.php">Listado de libros</a>
-        <a href="./listadoAutores.php">Listado de autores</a>
-        <a href="./insertarAutor.php">Insertar autor</a>
-
-    </nav>
+    <?php
+    if(comprobarAdmin()){
+        echo $menuAdmin;
+    }else{
+        echo $menuBibliotecario;
+    }
+    ?>
     <form action="insertarLibro.php" method="post">
         <label for="titulo">Título</label>
         <input type="text" name="titulo" id="titulo">

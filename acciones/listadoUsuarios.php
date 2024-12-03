@@ -1,5 +1,7 @@
 <?php
 require_once '../auten/seguridad.php';
+require_once '../templates/templateAdmin.php';
+require_once '../templates/templateBibliotecario.php';
 session_start();
 //comprobamos los roles
 if (comprobarUsuario() || comprobarBibliotecario()) {
@@ -18,13 +20,13 @@ if (comprobarUsuario() || comprobarBibliotecario()) {
 
 <body>
     <h1>Listado</h1>
-    <nav id='menu'>
-        <a href="listadoLibros.php">Listado de libros</a>
-        <a href="insertarAutor.php">Listado de autores</a>
-        <a href="insertarLibro.php">Insertar libro</a>
-        <a href="insertarUsuario.php">Insertar Usuario</a>
-
-    </nav>
+    <?php
+    if(comprobarAdmin()){
+        echo $menuAdmin;
+    }else{
+        echo $menuBibliotecario;
+    }
+    ?>
     <table>
         <tr>
             <th>id</th>

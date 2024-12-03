@@ -13,18 +13,18 @@ if (!file_exists("./conexion/config.php")) {
     //Dependiendo del rol, asignamos un header y footer correspondiente.
     if($_SESSION["rol"] == "admin"){
         include_once("./templates/templateAdmin.php");
-        $header = $headerAdmin;
+        $header = $headerAdminIndex;
         $footer = $footerAdmin;
     }
     //en caso de que sea usuario como solo puede ver los libros, redirección al listadoLibros.php
     if($_SESSION["rol"] == "user"){
         include_once("./templates/templateAdmin.php");
-        $header = $headerUser;
+        $header = $headerUserInddex;
         $footer = $footerUser;    
     }
     if($_SESSION["rol"] == "bibliotecario"){
         include_once("./templates/templateBibliotecario.php");
-        $header = $headerBibliotecario;
+        $header = $headerBibliotecarioIndex;
         $footer = $footerBibliotecario;
     }
 }

@@ -3,6 +3,8 @@ session_start();
 include_once("../auten/seguridad.php");
 require_once '../conexion/conexion.php';
 require_once '../clases/autores.php';
+require_once '../templates/templateAdmin.php';
+require_once '../templates/templateBibliotecario.php';
 //comprobamos los roles
 if (comprobarUsuario()) {
     header("Location: ../index.php");
@@ -30,12 +32,13 @@ if (isset($_POST['Actualizar'])) {
 
 <body>
     <h1>Actualizar Autor</h1>
-    <nav id='menu'>
-        <a href="./listadoLibros.php">Listado de libros</a>
-        <a href="./listadoAutores.php">Listado de autores</a>
-        <a href="./insertarLibro.php">Insertar libro</a>
-        <a href="./insertarAutor.php">Insertar autores</a>
-    </nav>
+    <?php
+    if(comprobarAdmin()){
+        echo $menuAdmin;
+    }else{
+        echo $menuBibliotecario;
+    }
+    ?>
 
     <form action="actualizarAutor.php" method="post">
         <input type="hidden" name="id" value='<?php echo $autor['id']; ?>'>

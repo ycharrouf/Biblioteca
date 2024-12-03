@@ -4,6 +4,8 @@ require_once '../auten/seguridad.php';
 require_once '../clases/libros.php';
 require_once '../conexion/conexion.php';
 require_once '../clases/autores.php';
+require_once '../templates/templateAdmin.php';
+require_once '../templates/templateBibliotecario.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,15 +20,13 @@ require_once '../clases/autores.php';
 <body>
     <h1>Listado</h1>
     <nav id='menu'>
-        <?php
-            if (!comprobarUsuario()){
-                echo '<a href="listadoLibros.php">Listado de libros</a>
-                <a href="insertarAutor.php">Insertar Autor</a>
-                <a href="insertarLibro.php">Insertar libro</a>';
-            }else{
-                echo '<a href="listadoLibros.php">Listado de libros</a>';
-            }
-        ?>
+    <?php
+    if(comprobarAdmin()){
+        echo $menuAdmin;
+    }else{
+        echo $menuBibliotecario;
+    }
+    ?>
         
     </nav>
     <table>

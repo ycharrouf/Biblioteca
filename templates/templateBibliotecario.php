@@ -1,5 +1,5 @@
 <?php
-$headerBibliotecario=<<<_header
+$headerBibliotecarioIndex=<<<_header
 <head>
     <h1>Bienvenido a la biblioteca 1.0</h1>
     <nav id='menu'>
@@ -18,3 +18,12 @@ $footerBibliotecario=<<<_footer
     </p>
 </footer>
 _footer;
+
+$menuBibliotecario= <<<_header
+    <nav id='menu'>
+        <a href="./listadoLibros.php">Listado de libros</a>
+        <a href="./listadoAutores.php">Listado de autores</a>
+        <a href="./insertarLibro.php">Insertar libro</a>
+        <a href="./insertarAutor.php">Insertar autores</a>
+    </nav>
+_header;
