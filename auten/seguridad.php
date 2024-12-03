@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 //comprobamos los roles de la sesion(admin, user, bibliotecario).
 function comprobarAdmin(){
     if(isset($_SESSION["rol"])){

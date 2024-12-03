@@ -1,28 +1,36 @@
 <?php
-    require_once '../clases/autores.php';
-    require_once '../conexion/conexion.php';
-    $autores = new autores(conexion::getConn(), 'autores');
-    if(isset($_POST['Insertar'])){
-        $nombre = $_POST['nombre'];
-        $apellidos = $_POST['apellidos'];
-        $nacionalidad = $_POST['nacionalidad'];
-        $idAutor=$autores->insertar($nombre, $apellidos, $nacionalidad);
-        if($idAutor){
-            header('Location: listadoAutores.php');
-        }else{
-            $mensaje = "Error al insertar el autor".       
-            "<br>".conexion::getConn()->errorInfo()[2];
-        }
+require_once '../auten/seguridad.php';
+session_start();
+//comprobamos los roles
+if (comprobarUsuario()) {
+    header("Location: ../index.php");
+}
+require_once '../clases/autores.php';
+require_once '../conexion/conexion.php';
+$autores = new autores(conexion::getConn(), 'autores');
+if (isset($_POST['Insertar'])) {
+    $nombre = $_POST['nombre'];
+    $apellidos = $_POST['apellidos'];
+    $nacionalidad = $_POST['nacionalidad'];
+    $idAutor = $autores->insertar($nombre, $apellidos, $nacionalidad);
+    if ($idAutor) {
+        header('Location: listadoAutores.php');
+    } else {
+        $mensaje = "Error al insertar el autor" .
+            "<br>" . conexion::getConn()->errorInfo()[2];
     }
-    ?>
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Insertar autor</title>
     <link rel="stylesheet" href="../ejercicios.css">
 </head>
+
 <body>
     <h1>Insertar autor</h1>
     <nav id='menu'>
@@ -40,11 +48,12 @@
         <input type="submit" name="Insertar" value="Insertar">
     </form>
     <?php
-    if(isset($mensaje))
-        echo "<p class='error'>".$mensaje."</p>";
+    if (isset($mensaje))
+        echo "<p class='error'>" . $mensaje . "</p>";
     ?>
 
     <footer>
-        <p>Desarrollado por: <a href="">@mvaronc</a></p>    
+        <a href="../auten/cerrarSesion.php">Cerrar Sesion</a>
+        <p>Desarrollado por: <a href="">@mvaronc</a></p>
     </footer>
 </body>

@@ -1,6 +1,12 @@
 <?php
+session_start();
+include_once("../auten/seguridad.php");
 require_once '../conexion/conexion.php';
 require_once '../clases/autores.php';
+//comprobamos los roles
+if (comprobarUsuario()) {
+    header("Location: ../index.php");
+}
 $autores = new autores(conexion::getConn(), 'autores');
 if (isset($_GET['id'])) {
     $autor = $autores->getAutor($_GET['id']);
@@ -46,6 +52,7 @@ if (isset($_POST['Actualizar'])) {
         echo "<p class='error'>" . $mensaje . "</p>";
     ?>
     <footer>
+        <a href="../auten/cerrarSesion.php">Cerrar Sesion</a>
         <p>Desarrollado por: <a href="">@mvaronc</a></p>
     </footer>
 

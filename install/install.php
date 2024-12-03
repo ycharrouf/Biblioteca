@@ -2,7 +2,6 @@
 ///Este archivo crear la conexion y crear la bases de datos.
 include_once("../conexion/conexion.php");
 $conexion = conexion::getConn();
-echo "obtiene la conexion";
 //variable con sentencia sql para crear la tabla de autores.
 $tablaAutor = <<<_autor
         CREATE TABLE autores (
@@ -38,6 +37,7 @@ $usuarios = <<<_user
         );
         _user;
 
+//boleano para saber que se han creado todas las tablas
 $paso = false;
 
 //Crea la tabla autores
@@ -78,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $adminPass = $_POST['adminPass'];
     //Creamos el salt y hasheamso la contraseña
     $salt = random_int(10000000, 99999999);
-    $hasPass = hash("sha256", $pass . $salt);
+    $hasPass = hash("sha256", $adminPass . $salt);
 
     $user = "INSERT INTO usuarios (login, Nombre, salt, password, rol) VALUES (:login, :Nombre, :salt, :password, 'admin')";
     $stmtUser = $conexion->prepare($user);
@@ -100,5 +100,5 @@ if ($paso) {
     echo "<a href=\"../index.php\">Clic aquí para volver a la página principal</a>";
 } else {
     echo "<h1>La instalacion no se a podido completar. Por favor rellene los datos del formulario correctamente</h1>";
-    echo "<a href=\"./formularioDatos.php\">Clic aquí para volver a la página principal</a>";
+    echo "<a href=\"./formularioDatos.php\">Clic aquí para volver al formulario</a>";
 }

@@ -7,6 +7,7 @@
 </head>
 <body>
     <h1>No se a podido encontrar logear correctamente</h1>
+    <a href="../index.php">Volver al Login</a>
 </body>
 <footer>
         <p>

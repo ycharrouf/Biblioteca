@@ -1,4 +1,10 @@
 <?php
+require_once '../auten/seguridad.php';
+session_start();
+//comprobamos los roles
+if (comprobarUsuario() || comprobarBibliotecario()) {
+    header("Location: ../index.php");
+}
 require_once '../conexion/conexion.php';
 require_once '../clases/user.php';
 $usuarios = new user(conexion::getConn(), 'usuarios');
@@ -53,6 +59,7 @@ if (isset($_POST['Actualizar'])) {
         echo "<p class='error'>" . $mensaje . "</p>";
     ?>
     <footer>
+        <a href="../auten/cerrarSesion.php">Cerrar Sesion</a>
         <p>Desarrollado por: <a href="">@mvaronc</a></p>
     </footer>
 

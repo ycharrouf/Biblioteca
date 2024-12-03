@@ -6,7 +6,6 @@ if (isset($_POST["enviar"])) {
     $user = $_POST["DBUser"];
     $pass = $_POST["DBPass"];
 
-    //datos el usuario en un array
 
     //guardamos las variables en el archivo
     $archivo = "../conexion/config.php";

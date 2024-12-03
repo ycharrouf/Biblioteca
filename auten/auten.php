@@ -15,10 +15,9 @@ session_start();
             $user = $classuser->getUserByUserName($userLogin);
             //guardamos en la sesion
             $_SESSION["rol"]= $user["rol"];
-            sleep(4);
             header("Location: ../index.php");
         }else{
-            header("Location: ../error.php");
+            header("Location: ./errorAuth/errorAuth.php");
         }
     }
 ?>
@@ -40,6 +39,7 @@ session_start();
             <input type="password" name="pass" id="pass">
             <input type="submit" value="Enviar" name="enviar">
         </fieldset>
+        <a href="./registro.php">Aquí para registrarte.</a>
     </form>
 </body>
 </html>

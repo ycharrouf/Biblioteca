@@ -10,12 +10,18 @@
 </head>
 <body>
     <h1>Listado</h1>
-    <nav id='menu'>
-        <a href="listadoAutores.php">Listado de autores</a>
-        <a href="insertarAutor.php">Listado de libros</a>
-        <a href="insertarLibro.php">Insertar libro</a>
-  
-    </nav>
+    <?php
+    include_once("../auten/seguridad.php");
+    if(!comprobarUsuario()){
+        echo"
+        <nav id='menu'>
+        <a href='listadoAutores.php'>Listado de autores</a>
+        <a href='insertarAutor.php'>Listado de libros</a>
+        <a href='insertarLibro.php'>Insertar libro</a>
+        </nav>";
+    }
+    ?>
+    
 <table>
     <tr>
         <th>Titulo</th>
@@ -40,13 +46,16 @@
         echo "<td>$autor[Nombre] $autor[Apellidos]</td>";
         echo "<td>".$libro['NumeroPaginas']."</td>";
         echo "<td>".$libro['NumeroEjemplares']."</td>";
-        echo "<td><a href='actualizarLibro.php?id=".$libro['id']."'>Actualizar</a></td>";
-        echo "<td><a href='borrarLibro.php?id=".$libro['id']."'>Borrar</a></td>";
+        if(!comprobarUsuario()){//si es un usuario no puede Actualizar o Borrar.
+            echo "<td><a href='actualizarLibro.php?id=".$libro['id']."'>Actualizar</a></td>";
+            echo "<td><a href='borrarLibro.php?id=".$libro['id']."'>Borrar</a></td>";
+        }
         echo "</tr>";
     }
     ?>
 </table>
 <footer>
-    <p>Desarrollado por: <a href="">@mvaronc</a></p>    
+    <a href="../auten/cerrarSesion.php">Cerrar Sesion</a>   
+    <p>Desarrollado por: <a href="">@mvaronc</a></p> 
 </footer>
 </body>
