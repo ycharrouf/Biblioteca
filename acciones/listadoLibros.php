@@ -16,7 +16,7 @@
         echo"
         <nav id='menu'>
         <a href='listadoAutores.php'>Listado de autores</a>
-        <a href='insertarAutor.php'>Listado de libros</a>
+        <a href='insertarAutor.php'>Insertar Autor</a>
         <a href='insertarLibro.php'>Insertar libro</a>
         </nav>";
     }

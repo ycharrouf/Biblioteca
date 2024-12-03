@@ -44,7 +44,7 @@ if (isset($_POST['Insertar'])) {
         <label for="nombre">Nombre</label>
         <input type="text" name="nombre" id="nombre">
         <label for="password">Password</label>
-        <input type="text" name="password" id="password">
+        <input type="password" name="password" id="password">
         <input type="submit" name="Insertar" value="Insertar">
     </form>
     <?php

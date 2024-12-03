@@ -18,7 +18,9 @@ if (!file_exists("./conexion/config.php")) {
     }
     //en caso de que sea usuario como solo puede ver los libros, redirección al listadoLibros.php
     if($_SESSION["rol"] == "user"){
-        header("Location: ./acciones/listadoLibros.php");    
+        include_once("./templates/templateAdmin.php");
+        $header = $headerUser;
+        $footer = $footerUser;    
     }
     if($_SESSION["rol"] == "bibliotecario"){
         include_once("./templates/templateBibliotecario.php");

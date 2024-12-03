@@ -1,3 +1,7 @@
+<?php
+session_start();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,11 +16,12 @@
     <h1>Listado</h1>
     <nav id='menu'>
         <a href="listadoLibros.php">Listado de libros</a>
-        <a href="insertarAutor.php">Listado de autores</a>
+        <a href="insertarAutor.php">Insertar Autor</a>
         <a href="insertarLibro.php">Insertar libro</a>
 
     </nav>
     <table>
+    
         <tr>
             <th>Nombre</th>
             <th>Apellidos</th>
@@ -27,6 +32,7 @@
         require_once '../clases/libros.php';
         require_once '../conexion/conexion.php';
         require_once '../clases/autores.php';
+        require_once '../auten/seguridad.php';
         $autores = new autores(conexion::getConn(), 'autores');
         $listado = $autores->listar();
         foreach ($listado as $autor) {
@@ -39,6 +45,7 @@
                 echo "<td><a href='borrarAutor.php?id=" . $autor['id'] . "'>Borrar</a></td>";
             }
             echo "</tr>";
+            
         }
         ?>
     </table>
