@@ -1,6 +1,9 @@
 <?php
 session_start();
-
+require_once '../auten/seguridad.php';
+require_once '../clases/libros.php';
+require_once '../conexion/conexion.php';
+require_once '../clases/autores.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,10 +18,16 @@ session_start();
 <body>
     <h1>Listado</h1>
     <nav id='menu'>
-        <a href="listadoLibros.php">Listado de libros</a>
-        <a href="insertarAutor.php">Insertar Autor</a>
-        <a href="insertarLibro.php">Insertar libro</a>
-
+        <?php
+            if (!comprobarUsuario()){
+                echo '<a href="listadoLibros.php">Listado de libros</a>
+                <a href="insertarAutor.php">Insertar Autor</a>
+                <a href="insertarLibro.php">Insertar libro</a>';
+            }else{
+                echo '<a href="listadoLibros.php">Listado de libros</a>';
+            }
+        ?>
+        
     </nav>
     <table>
     
@@ -29,10 +38,6 @@ session_start();
         </tr>
 
         <?php
-        require_once '../clases/libros.php';
-        require_once '../conexion/conexion.php';
-        require_once '../clases/autores.php';
-        require_once '../auten/seguridad.php';
         $autores = new autores(conexion::getConn(), 'autores');
         $listado = $autores->listar();
         foreach ($listado as $autor) {
