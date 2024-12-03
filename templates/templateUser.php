@@ -19,7 +19,7 @@ $footerUser=<<<_footer
 </footer>
 _footer;
 
-$menuUserIndex=<<<_menu
+$menuUser=<<<_menu
     <nav id='menu'>
         <a href="./listadoLibros.php">Listado de libros</a>
         <a href="./listadoAutores.php">Listado de autores</a>

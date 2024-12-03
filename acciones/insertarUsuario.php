@@ -32,12 +32,14 @@ if (isset($_POST['Insertar'])) {
 </head>
 
 <body>
-    <h1>Insertar autor</h1>
+    <h1>Insertar Usuario</h1>
     <nav id='menu'>
         <a href="listadoLibros.php">Listado de libros</a>
         <a href="listadoAutores.php">Listado de autores</a>
+        <a href="listadoUsuarios.php">Listado de usuarios</a>
         <a href="insertarLibro.php">Insertar libro</a>
-        <a href="insertarAutores.php">Insertar Autores</a>
+        <a href="insertarAutor.php">Insertar Autores</a>
+        <a href="insertarUsuario.php">Insertar Usuario</a>
     </nav>
     <form action="insertarUsuario.php" method="post">
         <label for="login">Login</label>

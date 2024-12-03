@@ -6,6 +6,7 @@ require_once '../conexion/conexion.php';
 require_once '../clases/autores.php';
 require_once '../templates/templateAdmin.php';
 require_once '../templates/templateBibliotecario.php';
+require_once '../templates/templateUser.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,8 +24,10 @@ require_once '../templates/templateBibliotecario.php';
     <?php
     if(comprobarAdmin()){
         echo $menuAdmin;
-    }else{
+    }else if(comprobarBibliotecario()){
         echo $menuBibliotecario;
+    }else{
+        echo $menuUser;
     }
     ?>
         

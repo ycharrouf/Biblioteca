@@ -18,8 +18,8 @@ if (!file_exists("./conexion/config.php")) {
     }
     //en caso de que sea usuario como solo puede ver los libros, redirección al listadoLibros.php
     if($_SESSION["rol"] == "user"){
-        include_once("./templates/templateAdmin.php");
-        $header = $headerUserInddex;
+        include_once("./templates/templateUser.php");
+        $header = $headerUserIndex;
         $footer = $footerUser;    
     }
     if($_SESSION["rol"] == "bibliotecario"){
