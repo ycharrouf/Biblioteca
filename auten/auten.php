@@ -15,9 +15,10 @@ session_start();
             $user = $classuser->getUserByUserName($userLogin);
             //guardamos en la sesion
             $_SESSION["rol"]= $user["rol"];
+            sleep(4);
             header("Location: ../index.php");
         }else{
-            header("../errorAut.php");
+            header("Location: ../error.php");
         }
     }
 ?>

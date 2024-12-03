@@ -14,28 +14,32 @@
         <a href="listadoLibros.php">Listado de libros</a>
         <a href="insertarAutor.php">Listado de autores</a>
         <a href="insertarLibro.php">Insertar libro</a>
+        <a href="insertarUsuario.php">Insertar Usuario</a>
   
     </nav>
 <table>
     <tr>
+        <th>id</th>
+        <th>Login</th>
         <th>Nombre</th>
-        <th>Apellidos</th>
-        <th>Pais</th>
+        <th>Salt</th>
+        <th>Rol</th>
     </tr>
 
     <?php
-    require_once '../clases/libros.php';
     require_once '../conexion/conexion.php';
-    require_once '../clases/autores.php';
-    $autores = new autores(conexion::getConn(), 'autores');
-    $listado = $autores->listar();
-    foreach($listado as $autor){
+    require_once '../clases/user.php';
+    $ususarios = new user(conexion::getConn(), 'usuarios');
+    $listado = $ususarios->listar();
+    foreach($listado as $user){
         echo "<tr>";
-        echo "<td>".$autor['Nombre']."</td>";
-        echo "<td>".$autor['Apellidos']."</td>";
-        echo "<td>".$autor['Pais']."</td>";
-        echo "<td><a href='actualizarAutor.php?id=".$autor['id']."'>Actualizar</a></td>";
-        echo "<td><a href='borrarAutor.php?id=".$autor['id']."'>Borrar</a></td>";
+        echo "<td>".$user['id']."</td>";
+        echo "<td>".$user['login']."</td>";
+        echo "<td>".$user['Nombre']."</td>";
+        echo "<td>".$user['salt']."</td>";
+        echo "<td>".$user['rol']."</td>";
+        echo "<td><a href='actualizarUsuario.php?id=".$user['id']."'>Actualizar</a></td>";
+        echo "<td><a href='borrarUsuario.php?id=".$user['id']."'>Borrar</a></td>";
         echo "</tr>";
     }
     ?>

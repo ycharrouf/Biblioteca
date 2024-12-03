@@ -8,7 +8,6 @@ if (isset($_GET['id'])) {
 
 $autor = $autores->getAutor($_GET['id']);
 if (isset($_POST['Actualizar'])) {
-    echo 'holaaa';
     $autores->actualizar($_POST['id'], $_POST['Nombre'], $_POST['Apellidos'], $_POST['Pais']);
     header('Location: listadoAutores.php');
 }

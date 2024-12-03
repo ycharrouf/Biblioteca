@@ -22,6 +22,7 @@ function login($login, $password){
         //comparalos los hash
         return hash_equals($loginPassDB, $passwordFrom);
     }else{
+        //en caso que de no exista el login
         return false;
     }
 }

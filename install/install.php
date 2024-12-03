@@ -34,7 +34,7 @@ $usuarios = <<<_user
         Nombre VARCHAR(255) NOT NULL,
         salt VARCHAR(255) NOT NULL,
         password VARCHAR(255) NOT NULL,
-        rol ENUM('admin', 'user') NOT NULL
+        rol ENUM('admin', 'user', 'bibliotecario') NOT NULL
         );
         _user;
 

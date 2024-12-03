@@ -9,12 +9,13 @@ class user
         $this->tabla = $tabla;
 
     }
-    public function añadir($nombre, $login, $password)
+    public function insertar($nombre, $login, $password, $rol)
     {
-        $sql = "INSERT INTO $this->tabla (login, nombre, salt, password) VALUES (:login, :nombre, :salt, :password)";
+        $sql = "INSERT INTO $this->tabla (login, nombre, salt, password, rol) VALUES (:login, :nombre, :salt, :password, :rol)";
         $stmt = $this->conexion->prepare($sql);
         $stmt->bindParam(':nombre', $nombre);
         $stmt->bindParam(':login', $login);
+        $stmt->bindParam(':rol', $rol);
         //password
         $salt = random_int(10000000, 99999999);
         $password = hash("sha256", $password . $salt);
@@ -36,16 +37,17 @@ class user
         $stmt->bindParam(':id', $id);
         $stmt->execute();
     }
-    public function actualizar($id, $nombre, $login, $password)
+    public function actualizar($id, $nombre, $login, $password, $rol)
     {
-        $sql = "UPDATE $this->tabla SET nombre = :nombre, login = :login, password = :password, salt = :salt WHERE id = :id";
+        $sql = "UPDATE $this->tabla SET nombre = :nombre, login = :login, password = :password, salt = :salt, rol= :rol WHERE id = :id";
         $stmt = $this->conexion->prepare($sql);
         $stmt->bindParam(':nombre', $nombre);
         $stmt->bindParam(':login', $login);
+        $stmt->bindParam(':rol', $rol);
         //password
         $salt = random_int(10000000, 99999999);
-        $password = hash("sha256", $password . $salt);
-        $stmt->bindParam(':password', $password);
+        $passwordhash = hash("sha256", $password . $salt);
+        $stmt->bindParam(':password', $passwordhash);
         $stmt->bindParam(':salt', $salt);
         $stmt->bindParam(':id', $id);
         try {
@@ -61,7 +63,7 @@ class user
         $stmt->execute();
         return $stmt->fetchAll();
     }
-    public function getUserId($id)
+    public function getUserById($id)
     {
         $sql = "SELECT * FROM $this->tabla WHERE id = :id";
         $stmt = $this->conexion->prepare($sql);
